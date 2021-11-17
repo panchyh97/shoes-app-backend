@@ -1,3 +1,4 @@
+import { IShoes } from '../interfaces/IShoes';
 import Shoe from '../models/shoe';
 
 export const getShoes = async () => {
@@ -21,4 +22,23 @@ export const createShoe = async (
 
     await shoe.save();
     return shoe;
+};
+
+export const removeShoes = async () => {
+    await Shoe.deleteMany();
+};
+
+export const setUpData = async (data: IShoes, iterations: number) => {
+    removeShoes();
+
+    for (let index = 0; index < iterations; index++) {
+        await createShoe(
+            `${data.modelo} ${index}`,
+            `${data.marca} ${index}`,
+            `${data.descripcion} ${index}`,
+            data.precio * index,
+            data.precio * index
+        );
+    };
+
 };
