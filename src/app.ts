@@ -4,6 +4,7 @@ import express from 'express';
 
 import config from './config';
 import routes from './routes';
+import './database';
 
 const app = express();
 
